@@ -31,5 +31,8 @@ $(".timeblock").on("click","p",function(){
 });0
 
 $(".timeblock").on("blur","textarea",function(){
+    let text =$(this).val().trim();
+    let $task = $("<p>").text(text).addClass("task-input  col-8");
 
+    $(this).replaceWith($task);
 })
