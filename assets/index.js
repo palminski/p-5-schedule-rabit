@@ -8,7 +8,7 @@ let setUpTimecards = function() { //Sets up the timeblocks when the page loads
         }
         // Builds required elements for each timeblock
         let $timeblock = $("<div>").attr("id","time-"+time).addClass("timeblock row bg-secondary my-2");
-        let $time = $("<h3>").text(time).addClass("col-2 bg-white");
+        let $time = $("<h3>").text(time).addClass("block-time col-2 bg-white");
         let $task = $("<p>").addClass("task-input  col-8");
         let $saveButton = $("<button>").text("save").addClass("col-2");
 
@@ -22,5 +22,14 @@ setUpTimecards();
 
 
 $(".timeblock").on("click","p",function(){
-    console.log("clicked");
-});
+    let thisSlotsTime = $(this).closest("block-time").attr("id");
+    console.log(thisSlotsTime);
+    let text = $(this).text();
+    let $textInput = $("<textarea>").addClass("form-control col-8").val(text);
+    $(this).replaceWith($textInput);
+    $textInput.trigger("focus");
+});0
+
+$(".timeblock").on("blur","textarea",function(){
+
+})
