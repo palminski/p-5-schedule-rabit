@@ -74,6 +74,12 @@ textarea{
   outline: none;
   box-shadow: none;
 }
-.timeblock {
-  background-color: rgb(152, 212, 212);
+.timeblock-bg-before {
+  background-color: rgb(212, 152, 152);
+}
+.timeblock-bg-current {
+  background-color: rgb(196, 212, 152);
+}
+.timeblock-bg-after {
+  background-color: rgb(152, 212, 165);
 }

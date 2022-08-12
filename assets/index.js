@@ -1,5 +1,8 @@
 let savedTasks = ["","","","","","","","",""];
 
+
+
+
 const collectSavedTasks = function() {
     if (localStorage.getItem("savedTasks") === null)
     {
@@ -13,7 +16,6 @@ const saveTask = function() {
     localStorage.setItem("savedTasks",JSON.stringify(savedTasks));
 };
 
-
 let setUpTimecards = function() { //Sets up the timeblocks when the page loads
     let time = 9
     let timeSuffix = "AM";
@@ -25,8 +27,8 @@ let setUpTimecards = function() { //Sets up the timeblocks when the page loads
             timeSuffix = "PM";
         }
         // Builds required elements for each timeblock
-        let $timeblock = $("<div>").attr("id","time-"+time).attr("data-array-slot",i).addClass("timeblock row my-2");
-        let $time = $("<h3>").text(time+" "+timeSuffix).addClass("block-time col-2 bg-info text-center h-100 pt-3");
+        let $timeblock = $("<div>").attr("id","time-"+time).attr("data-array-slot",i).addClass("timeblock timeblock-bg-before row my-2");
+        let $time = $("<h3>").text(time+" "+timeSuffix).addClass("block-time col-2 bg-info text-center h-100 pt-4");
         
         let $task = $("<p>").addClass("task-input  col-8 pt-3");
         if (savedTasks[i]) {
@@ -40,8 +42,35 @@ let setUpTimecards = function() { //Sets up the timeblocks when the page loads
         time ++        
     }
 };
+
+const checkTime = function() {
+    console.log("checking Time");
+    let currentTime = moment().format("DD/MM/YYYY hh:mm");
+    $("#currentDay").text(currentTime);
+    let currentHour = moment(currentTime,"DD/MM/YYYY hh:mm").hour();
+    //For testing different Times
+    //currentHour = 14;
+
+    for (i=0;i<9;i++) {
+        let $timeblock = $("div[data-array-slot="+i+"]");
+        $timeblock.removeClass("timeblock-bg-before timeblock-bg-current timeblock-bg-after")
+        if (9+i < currentHour ) {
+            $timeblock.addClass("timeblock-bg-before");
+        }
+        else if (9+i === currentHour) {
+            $timeblock.addClass("timeblock-bg-current");
+        }
+        else if (9+i > currentHour) {
+            $timeblock.addClass("timeblock-bg-after");
+        }
+        
+    }
+}
+
+
 collectSavedTasks();
 setUpTimecards();
+checkTime();
 
 
 $(".timeblock").on("click","p",function(){ //When clicking on the text you can enter new text
@@ -65,6 +94,8 @@ $(".timeblock").on("click","button",function(){ //When clicking on button you wi
     let thisSlotsId = $(this).closest(".timeblock").attr("data-array-slot");
     savedTasks[thisSlotsId] = thisSlotsText;
     saveTask();
-    
-    
 });
+
+setInterval(function() {
+    checkTime();
+}, 1000*60)
