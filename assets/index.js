@@ -29,7 +29,7 @@ let setUpTimecards = function() { //Sets up the timeblocks when the page loads
         if (savedTasks[i]) {
             $task.text(savedTasks[i]);
         }
-        let $saveButton = $("<button>").text("save").addClass("col-2");
+        let $saveButton = $("<button>").html("<span class='oi oi-pin'></span>SAVE").addClass("col-2");
 
         //places them on page
         $(".container").append($timeblock);
