@@ -43,7 +43,7 @@ const checkTime = function() { //Checks current time for top of page and gets th
     let currentTime = moment().format("DD/MM/YYYY hh:mm");
     $("#currentDay").text(currentTime);
     let currentHour = moment().hour();
-    currentHour = 13;
+    
 
     for (i=0;i<9;i++) {  //Removes the bg-color classes from each timeblock and replaces them depending on the current hour
         let $timeblock = $("div[data-array-slot="+i+"]");

@@ -1,6 +1,6 @@
 # Work Day Scheduler
-
 ![Image of application](./screenshot.PNG)
+https://palminski.github.io/p-5-schedule-rabit/
 
 ## Description
 Simply click on an empy space on one of the time cards and it will turn into a text box where you can enter whatever task is due/needs to be done durring or after that time. If you want to save it to local storage all you need to do is click on the pin symbol to the right. The tasks are also all color coded and will display as red if they are before the current time, yellow if they are on the current hour, or green if they occure after the current time. The task list will update every minute to change the time displayed at the top of the screen and to update the colors of the tasks.
